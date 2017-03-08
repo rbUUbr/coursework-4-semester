@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
+
 URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS = "https://www.bsuir.by/schedule/rest/studentGroup"
 MY_GROUP_PAGE = "https://www.bsuir.by/schedule/rest/schedule/21381"
 def parse_groups
@@ -23,7 +23,7 @@ def parse_my_group
 end
 puts "Started parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
 parse_groups
-puts "Ended parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
+puts "Ended parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}".green
 puts "Started parsing #{MY_GROUP_PAGE}"
 parse_my_group
 puts "Ended parsing #{MY_GROUP_PAGE}"
