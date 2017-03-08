@@ -26,4 +26,4 @@ parse_groups
 puts "Ended parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
 puts "Started parsing #{MY_GROUP_PAGE}"
 parse_my_group
-puts "Ended parsing #{MY_GROUP_PAGE}"
+puts "Ended parsing #{MY_GROUP_PAGE}."
