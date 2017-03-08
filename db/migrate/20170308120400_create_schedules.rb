@@ -1,7 +1,7 @@
 class CreateSchedules < ActiveRecord::Migration[5.0]
   def change
     create_table :schedules do |t|
-      t.belongs_to :group, index: true, unique: true, foreign_key: true
+      t.belongs_to :group, index: true
       t.string :subject
       t.integer :weeks, array: true
       t.integer :subgroup
