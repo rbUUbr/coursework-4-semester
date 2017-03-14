@@ -4,11 +4,15 @@
     <title>CourseWork3Semester</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body ng-app="bsuirSchedule">
+    <div class="row">
+      <div class="col md-6 col-md-offset-3">
+        <ui-view></ui-view>
+      </div>
+    </div>
   </body>
 </html>

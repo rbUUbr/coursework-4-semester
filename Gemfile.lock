@@ -38,6 +38,10 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    angular-rails-templates (1.0.2)
+      railties (>= 4.2, < 6)
+      sprockets (>= 3.0, < 5)
+      tilt
     arel (7.1.4)
     builder (3.2.3)
     byebug (9.0.6)
@@ -155,6 +159,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angular-rails-templates
   byebug
   coffee-rails (~> 4.2)
   colorize

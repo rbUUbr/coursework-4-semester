@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require angular
-//= require satellizer
+//= require angular-rails-templates
 //= require AngularDevise
 //= require angular-rails-templates
 //= require angular-ui-router

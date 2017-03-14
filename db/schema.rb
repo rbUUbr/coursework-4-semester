@@ -33,5 +33,4 @@ ActiveRecord::Schema.define(version: 20170308120400) do
     t.index ["group_id"], name: "index_schedules_on_group_id", using: :btree
   end
 
-  add_foreign_key "schedules", "groups"
 end
