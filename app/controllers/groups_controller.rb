@@ -1,6 +1,9 @@
 class GroupsController < ApplicationController
 	def index
-		respond_with Group.all
+		groups = Group.all
+		respond_with(groups) do |format|
+			format.json {render :json => groups.as_json}
+		end
 	end
 	
 	private

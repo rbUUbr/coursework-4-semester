@@ -23,13 +23,5 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/rbudeveloper_production</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Rails coursework-4-semester: development" uuid="1bc44d6b-25b2-4af9-96df-43df3cc5abee">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/rbudeveloper_development</jdbc-url>
-    </data-source>
   </component>
 </project>

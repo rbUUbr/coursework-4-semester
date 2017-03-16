@@ -5,10 +5,9 @@ angular.module('bsuirSchedule')
             var o = {
                 groups: []
             };
-
-            o.getAll = function() {
+                o.getAll = function() {
                 return $http.get('/groups.json').then(function(data) {
-                    angular.copy(data, o.groups);
+                    angular.copy(data.data, o.groups);
                 });
             };
             return o;
