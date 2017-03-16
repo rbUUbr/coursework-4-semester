@@ -12,6 +12,9 @@ angular.module('bsuirSchedule', ['ui.router', 'templates'])
             $urlRouterProvider.otherwise('home');
         }
     ])
+    .factory('groups',[
+        '$http', function($http){}
+    ])
     .controller('MainCtrl', [
         '$scope',
         function($scope) {
