@@ -7,14 +7,20 @@ angular.module('bsuirSchedule', ['ui.router', 'templates'])
                 .state('home', {
                     url: '/home',
                     templateUrl: '_index.html',
-                    controller: 'MainCtrl'
+                    controller: 'MainCtrl',
+                    resolve: {
+                        groupPromise: ['groups', function(groups){
+                            return groups.getAll();
+                        }]
+                    }
                 });
             $urlRouterProvider.otherwise('home');
         }
     ])
     .controller('MainCtrl', [
-        '$scope',
-        function($scope) {
-            $scope.test = "Hello, World!";
+        '$scope','groups',
+        function($scope, groups) {
+        $scope.test = "Hi";
+        $scope.groups = groups.groups;
         }
     ]);

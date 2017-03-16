@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  def index
+	def index
 		respond_with Group.all
 	end
 	
