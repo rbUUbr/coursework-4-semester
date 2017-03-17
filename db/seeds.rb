@@ -12,12 +12,17 @@ def parse_groups
 end
 def parse_my_group
   example_group = Group.find_by(name: "551006")
+  weeks = []
   my_group_doc = Nokogiri::XML(open("https://www.bsuir.by/schedule/rest/schedule/21381"))
   my_group_doc.xpath("//scheduleModel").each do |link|
     link.xpath(".//schedule").each do |subject|
       if (subject.xpath(".//lessonType").text == "ЛР")
-        example_group.schedules << Schedule.create(subject: subject.xpath(".//subject").text, weeks: subject.xpath(".//weekNumber").text, subgroup: subject.xpath(".//numSubgroup").text, time: subject.xpath(".//lessonTime").text)
-      end 
+        subject.xpath(".//weekNumber").each do |week|
+          weeks.push(week.text)
+        end
+        example_group.schedules << Schedule.create(subject: subject.xpath(".//subject").text, weeks: weeks, subgroup: subject.xpath(".//numSubgroup").text, time: subject.xpath(".//lessonTime").text)
+        weeks = []
+      end
     end
   end
 end
