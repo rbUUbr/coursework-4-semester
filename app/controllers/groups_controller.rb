@@ -1,13 +1,10 @@
 class GroupsController < ApplicationController
+	before_filter :authenticate_user!, only: [:create]
 	def index
-		groups = Group.all
-		respond_with(groups) do |format|
-			format.json {render :json => groups.as_json}
-		end
+		respond_with Group.all
 	end
-	
 	private
 	def group_params
-		params.require(:group).permit(:id_of_group, :name)
+		params.require(:group).permit(:id_of_group, :name, :schedules, :users)
 	end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: "application#angular"
   resources :groups, only: [:index, :show]
   resources :schedules, only: [:create, :index, :show, :update]
