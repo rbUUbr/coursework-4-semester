@@ -7,7 +7,7 @@ MY_GROUP_PAGE = "https://www.bsuir.by/schedule/rest/schedule/21381"
 def parse_groups
   all_groups_page = Nokogiri::XML(open(URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS))
   all_groups_page.xpath("//studentGroup").each do |link|
-    Group.create(id_of_group: link.xpath(".//id").text, name: link.xpath(".//name").text)
+    Group.create(id_of_group: link.xpath(".//id").text, name: link.xpath(".//name").text, course: link.xpath(".//course").text)
   end
 end
 
@@ -19,8 +19,8 @@ def parse_my_group
     groups_urls << "https://www.bsuir.by/schedule/rest/schedule/#{group.id_of_group.to_s}"
   end
   Group.all.each do |group|
-    groups_urls.each do |url|
       begin
+        url = "https://www.bsuir.by/schedule/rest/schedule/#{group.id_of_group.to_s}"
         puts "Started parsing #{url}"
         group_doc = Nokogiri::XML(open(url))
         group_doc.xpath("//scheduleModel").each do |link|
@@ -33,6 +33,7 @@ def parse_my_group
               weeks = []
             end
           end
+
         end
       rescue OpenURI::HTTPError => e
         if e.message == '404 Not Found'
@@ -43,7 +44,6 @@ def parse_my_group
       end
       puts "Ended parsing #{url}".green
     end
-  end
 end
 puts "Started parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
 parse_groups
