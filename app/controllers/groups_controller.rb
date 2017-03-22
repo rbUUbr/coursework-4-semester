@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
 	before_filter :authenticate_user!, only: [:create]
 	def index
-		respond_with Group.all
+		respond_with Group.all.order("name")
 	end
 	private
 	def group_params
