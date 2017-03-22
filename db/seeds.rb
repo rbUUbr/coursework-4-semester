@@ -11,28 +11,41 @@ def parse_groups
   end
 end
 
+
 def parse_my_group
   weeks = []
+  groups_urls = []
   Group.all.each do |group|
-  group_doc = Nokogiri::XML(open("https://www.bsuir.by/schedule/rest/schedule/#{group.id_of_group.to_s}"))
-
-  group_doc.xpath("//scheduleModel").each do |link|
-      link.xpath(".//schedule").each do |subject|
-        if (subject.xpath(".//lessonType").text == "ЛР")
-          subject.xpath(".//weekNumber").each do |week|
-            weeks.push(week.text)
+    groups_urls << "https://www.bsuir.by/schedule/rest/schedule/#{group.id_of_group.to_s}"
+  end
+  Group.all.each do |group|
+    groups_urls.each do |url|
+      begin
+        puts "Started parsing #{url}"
+        group_doc = Nokogiri::XML(open(url))
+        group_doc.xpath("//scheduleModel").each do |link|
+          link.xpath(".//schedule").each do |subject|
+            if (subject.xpath(".//lessonType").text == "ЛР")
+              subject.xpath(".//weekNumber").each do |week|
+                weeks.push(week.text)
+              end
+              group.schedules << Schedule.create(subject: subject.xpath(".//subject").text, weeks: weeks, subgroup: subject.xpath(".//numSubgroup").text, time: subject.xpath(".//lessonTime").text)
+              weeks = []
+            end
           end
-          group.schedules << Schedule.create(subject: subject.xpath(".//subject").text, weeks: weeks, subgroup: subject.xpath(".//numSubgroup").text, time: subject.xpath(".//lessonTime").text)
-          weeks = []
+        end
+      rescue OpenURI::HTTPError => e
+        if e.message == '404 Not Found'
+          # handle 404 error
+        else
+          raise e
         end
       end
+      puts "Ended parsing #{url}".green
     end
-
   end
 end
 puts "Started parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
 parse_groups
 puts "Ended parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}".green
-puts "Started parsing #{MY_GROUP_PAGE}"
 parse_my_group
-puts "Ended parsing #{MY_GROUP_PAGE}".green
