@@ -36,7 +36,7 @@ def parse_my_group
         end
       rescue OpenURI::HTTPError => e
         if e.message == '404 Not Found'
-          # handle 404 error
+          puts "Url #{url} not found :c".colorize(:red)
         else
           raise e
         end
