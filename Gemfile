@@ -17,7 +17,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'angular-rails-templates'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-gem 'rspec-rails', '~>3.5'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'responders'
@@ -38,10 +37,18 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+group :test do
+  gem 'rspec-rails', '~>3.5'
+  gem 'shoulda-matchers', require: false
+  gem 'faker', '~> 1.6.1'
+  gem 'factory_girl_rails', '~> 4.5.0'
 
+  gem 'database_cleaner'
+end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'capybara', '~> 2.5'
 end
 gem 'devise'
 group :development do
