@@ -9,7 +9,7 @@ END_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE = Date.parse("31st May 2017")
 def parse_groups
   all_groups_page = Nokogiri::XML(open(URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS))
   all_groups_page.xpath("//studentGroup").each do |link|
-    Group.create!(id_of_group: link.xpath(".//id").text, name: link.xpath(".//name").text, course: link.xpath(".//course").text)
+    Group.create!(course: link.xpath(".//course").text.to_i, id_of_group: link.xpath(".//id").text, name: link.xpath(".//name").text)
   end
 end
 
@@ -52,17 +52,25 @@ def create_schedules
   current_date = START_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE
   current_week = 1
   while current_date < END_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE do
-    Schedule.all.each do |schedule|
-      if (schedule.weeks.include?(current_week))
-        LabQueue.create!(time: schedule.time, date: current_week.to_s)
+    Group.find_each do |group|
+      group.schedules.find_each do |schedule|
+        if (schedule.weeks.include?(current_week))
+          LabQueue.create!(date: current_date)
+        end
       end
+    end
+    current_week += 1
+    current_date += 1
+    if (current_week > 4)
+      current_week = 1
     end
   end
 end
 
-=begin puts "Started parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
+begin
+  puts "Started parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
 parse_groups
 puts "Ended parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}".green
 parse_groups_schedules
-=end
+end
 create_schedules
