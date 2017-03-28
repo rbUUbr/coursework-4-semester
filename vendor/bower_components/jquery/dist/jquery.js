@@ -3282,7 +3282,7 @@ jQuery.Callbacks = function( options ) {
 		// Actual callback list
 		list = [],
 
-		// Queue of execution data for repeatable lists
+        // queue.rb of execution data for repeatable lists
 		queue = [],
 
 		// Index of currently firing callback (modified by add/remove as needed)
@@ -6807,7 +6807,7 @@ function defaultPrefilter( elem, props, opts ) {
 		hidden = elem.nodeType && isHiddenWithinTree( elem ),
 		dataShow = dataPriv.get( elem, "fxshow" );
 
-	// Queue-skipping animations hijack the fx hooks
+    // queue.rb-skipping animations hijack the fx hooks
 	if ( !opts.queue ) {
 		hooks = jQuery._queueHooks( elem, "fx" );
 		if ( hooks.unqueued == null ) {

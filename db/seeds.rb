@@ -12,7 +12,7 @@ def parse_groups
 end
 
 
-def parse_my_group
+def parse_groups_schedules
   weeks = []
   groups_urls = []
   Group.all.each do |group|
@@ -45,7 +45,13 @@ def parse_my_group
       puts "Ended parsing #{url}".green
     end
 end
+
+def create_schedules
+  Schedule.each do |schedule|
+    Queue.create(time: schedule.time)
+  end
+end
 puts "Started parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
 parse_groups
 puts "Ended parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}".green
-parse_my_group
+parse_groups_schedules
