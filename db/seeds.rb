@@ -4,10 +4,12 @@
 require 'open-uri'
 URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS = "https://www.bsuir.by/schedule/rest/studentGroup"
 MY_GROUP_PAGE = "https://www.bsuir.by/schedule/rest/schedule/21381"
+START_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE = Date.parse("8th Feb 2017")
+END_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE = Date.parse("31st May 2017")
 def parse_groups
   all_groups_page = Nokogiri::XML(open(URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS))
   all_groups_page.xpath("//studentGroup").each do |link|
-    Group.create(id_of_group: link.xpath(".//id").text, name: link.xpath(".//name").text, course: link.xpath(".//course").text)
+    Group.create!(id_of_group: link.xpath(".//id").text, name: link.xpath(".//name").text, course: link.xpath(".//course").text)
   end
 end
 
@@ -15,10 +17,10 @@ end
 def parse_groups_schedules
   weeks = []
   groups_urls = []
-  Group.all.each do |group|
+  Group.find_each do |group|
     groups_urls << "https://www.bsuir.by/schedule/rest/schedule/#{group.id_of_group.to_s}"
   end
-  Group.all.each do |group|
+  Group.find_each do |group|
       begin
         url = "https://www.bsuir.by/schedule/rest/schedule/#{group.id_of_group.to_s}"
         puts "Started parsing #{url}"
@@ -29,7 +31,7 @@ def parse_groups_schedules
               subject.xpath(".//weekNumber").each do |week|
                 weeks.push(week.text)
               end
-              group.schedules << Schedule.create(subject: subject.xpath(".//subject").text, weeks: weeks, subgroup: subject.xpath(".//numSubgroup").text, time: subject.xpath(".//lessonTime").text)
+              group.schedules << Schedule.create!(subject: subject.xpath(".//subject").text, weeks: weeks, subgroup: subject.xpath(".//numSubgroup").text, time: subject.xpath(".//lessonTime").text)
               weeks = []
             end
           end
@@ -47,11 +49,20 @@ def parse_groups_schedules
 end
 
 def create_schedules
-  Schedule.each do |schedule|
-    Queue.create(time: schedule.time)
+  current_date = START_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE
+  current_week = 1
+  while current_date < END_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE do
+    Schedule.all.each do |schedule|
+      if (schedule.weeks.include?(current_week))
+        LabQueue.create!(time: schedule.time, date: current_week.to_s)
+      end
+    end
   end
 end
-puts "Started parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
+
+=begin puts "Started parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}"
 parse_groups
 puts "Ended parsing #{URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS}".green
 parse_groups_schedules
+=end
+create_schedules
