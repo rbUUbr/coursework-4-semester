@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328113324) do
+ActiveRecord::Schema.define(version: 20170403133227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,17 +20,18 @@ ActiveRecord::Schema.define(version: 20170328113324) do
     t.string   "name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer "course"
+    t.integer  "course"
   end
 
   create_table "lab_queues", force: :cascade do |t|
-    t.string "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "labqueues", force: :cascade do |t|
-    t.string "time"
+    t.string   "date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "schedule_id"
+    t.integer  "users_id"
+    t.index ["date"], name: "index_lab_queues_on_date", using: :btree
+    t.index ["schedule_id"], name: "index_lab_queues_on_schedule_id", using: :btree
+    t.index ["users_id"], name: "index_lab_queues_on_users_id", using: :btree
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -41,13 +42,14 @@ ActiveRecord::Schema.define(version: 20170328113324) do
     t.string   "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "weeks_day"
     t.index ["group_id"], name: "index_schedules_on_group_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.integer "group_id"
+    t.integer  "group_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

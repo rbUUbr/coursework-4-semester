@@ -1,11 +1,5 @@
 source 'https://rubygems.org'
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record
@@ -17,6 +11,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'angular-rails-templates'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem 'devise'
+gem 'active_model_serializers'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'angular_rails_csrf', git: 'https://github.com/tpmullan/angular_rails_csrf.git'
+gem 'omniauth'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'responders'
@@ -46,7 +45,8 @@ group :test do
   gem 'database_cleaner'
 end
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # Call 'byebug' anywhere in the code to stop execution and
+  # get a debugger console
   gem 'byebug', platform: :mri
   gem 'capybara', '~> 2.5'
 end

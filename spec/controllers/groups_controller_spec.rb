@@ -8,9 +8,17 @@ RSpec.describe GroupsController, type: :controller do
   end
   context "GET index" do
     it "renders index template" do
-      get "/groups.json"
+      get :index, format: json
       json = JSON.parse(response.body)
       expect(json).to be_success
+    end
+  end
+  describe 'POST #create' do
+    context 'with valid attributes' do
+      it 'does create a new group' do
+        post :create, params: { group: attributes_for(:group) }
+        expect(Group.count).to eq(1)
+      end
     end
   end
 end
