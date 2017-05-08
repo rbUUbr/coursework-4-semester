@@ -1,6 +1,29 @@
 angular
   .module('bsuirSchedule')
-  .config(function($stateProvider, $urlRouterProvider){
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
+      var interceptor = ['$location', '$q', function ($location, $q) {
+
+          function success(response) {
+              return response;
+          }
+
+          function error(response) {
+
+              if (response.status === 401) {
+                  $location.path('/login');
+                  return $q.reject(response);
+              }
+              else {
+                  return $q.reject(response);
+              }
+          }
+
+          return function (promise) {
+              return promise.then(success, error);
+          };
+      }];
+
+      $httpProvider.interceptors.push(interceptor);
     $stateProvider
       .state('home', {
         url: '/home',
@@ -26,6 +49,10 @@ angular
             $state.go('home')
           })
         }
-      })
-    $urlRouterProvider.otherwise('/home')
-  })
+      });
+    $urlRouterProvider.otherwise('/home');
+      $locationProvider.html5Mode({
+          enabled: true,
+          requireBase: false
+      });
+  });
