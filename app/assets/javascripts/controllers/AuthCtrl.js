@@ -14,8 +14,7 @@ angular
 
       $scope.login = function(){
           Auth.login($scope.user, config).then(function(user){
-              $rootScope.user = user
-              alert("You're all signed in, " + user.username);
+              $rootScope.user = user;
               $state.go('home');
           }, function(errorResponse){
           });

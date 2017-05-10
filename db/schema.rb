@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20170403133227) do
     t.datetime "updated_at",  null: false
     t.integer  "schedule_id"
     t.integer  "users_id"
-    t.index ["date"], name: "index_lab_queues_on_date", using: :btree
     t.index ["schedule_id"], name: "index_lab_queues_on_schedule_id", using: :btree
     t.index ["users_id"], name: "index_lab_queues_on_users_id", using: :btree
   end
@@ -58,6 +57,10 @@ ActiveRecord::Schema.define(version: 20170403133227) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
