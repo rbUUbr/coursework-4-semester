@@ -1,0 +1,3 @@
+<% @lab_queues.each do |lab_queue| %>
+    <%= link_to "CREATE", lab_queue_registrate_on_lab_path(lab_queue.id) %>
+<% end %>

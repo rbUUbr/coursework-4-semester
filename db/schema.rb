@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511231944) do
+ActiveRecord::Schema.define(version: 20170511233609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170511231944) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_position", default: 1
     t.index ["lab_queue_id"], name: "index_selected_queues_on_lab_queue_id"
     t.index ["user_id"], name: "index_selected_queues_on_user_id"
   end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root to: 'lab_queues#index'
   devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions'
@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   resources :groups, only: [:index, :show]
   resources :schedules, only: [:create, :index, :show, :update]
   resources :favorites, only: [:index, :show, :create, :destroy]
-  resources :lab_queues
+  resources :lab_queues do
     get 'registrate_on_lab', to: 'lab_queues#registrate_on_lab'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
