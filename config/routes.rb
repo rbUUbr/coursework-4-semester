@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'application#index'
 
   resources :groups, only: [:index, :show]
   resources :schedules, only: [:create, :index, :show, :update]

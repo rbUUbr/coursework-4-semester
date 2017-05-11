@@ -58,7 +58,7 @@ def create_schedules
     Group.find_each do |group|
       group.schedules.find_each do |schedule|
         if schedule.weeks.include?(current_week)
-          LabQueue.create!(date: current_date, schedule_id: schedule.id)
+          LabQueue.create!(date: current_date, schedule_id: schedule.id, group_id: group.id)
         end
       end
     end
