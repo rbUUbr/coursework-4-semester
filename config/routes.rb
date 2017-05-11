@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   resources :schedules, only: [:create, :index, :show, :update]
   resources :favorites, only: [:index, :show, :create, :destroy]
   resources :lab_queues
+    get 'registrate_on_lab', to: 'lab_queues#registrate_on_lab'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
