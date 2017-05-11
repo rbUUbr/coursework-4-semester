@@ -8,4 +8,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
+  has_many :selected_queues, dependent: :destroy
+  has_many :favorite_queues, through: :selected_queues, source: :lab_queue, dependent: :nullify
 end
