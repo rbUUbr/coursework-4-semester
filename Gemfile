@@ -1,25 +1,23 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-gem 'angular-rails-templates'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-gem 'devise'
-gem 'active_model_serializers'
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'angular_rails_csrf', git: 'https://github.com/tpmullan/angular_rails_csrf.git'
 gem 'omniauth'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'responders'
 gem 'colorize'
+gem 'cancancan'
+gem 'pry'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'nokogiri'
@@ -51,7 +49,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'capybara', '~> 2.5'
 end
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
+gem 'erubis'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
