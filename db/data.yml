@@ -1,0 +1,11 @@
+
+---
+groups:
+  columns:
+  - id
+  - id_of_group
+  - name
+  - created_at
+  - updated_at
+  - course
+  records: 
