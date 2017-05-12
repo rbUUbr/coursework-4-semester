@@ -1,17 +1,15 @@
-<% @lab_queues.each do |lab_queue| %>
-    <div class="container">
-      <div class="row">
-
-        <div class="col-sm-3">
-          <div class="card">
-            <div class="card-block">
-              <h4 class="card-title"><%= lab_queue.schedule.subject %></h4>
-              <p class="card-text"> <%=  lab_queue.date%> <%= lab_queue.schedule.weeks_day %> <%= lab_queue.schedule.time %></p>
-              <%= link_to "CREATE", lab_queue_registrate_on_lab_path(lab_queue.id) %>
-            </div>
+<div class="container">
+  <div class="row">
+    <% @lab_queues.each do |lab_queue| %>
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-block">
+            <h4 class="card-title"><%= lab_queue.schedule.subject %></h4>
+            <p class="card-text"> <%=  lab_queue.date%> <%= lab_queue.schedule.weeks_day %> <%= lab_queue.schedule.time %></p>
+            <%= link_to "CREATE", lab_queue_registrate_on_lab_path(lab_queue.id) %>
           </div>
         </div>
       </div>
-    </div>
-
-<% end %>
+    <% end %>
+  </div>
+</div>
