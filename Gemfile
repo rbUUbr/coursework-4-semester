@@ -44,8 +44,8 @@ group :test do
 end
 gem 'yaml_db'
 gem 'enumerize'
+gem 'letter_opener'
 group :development, :test do
-  gem 'letter_opener'
   # Call 'byebug' anywhere in the code to stop execution and
   # get a debugger console
   gem 'byebug', platform: :mri
