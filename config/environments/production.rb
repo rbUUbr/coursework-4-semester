@@ -17,6 +17,7 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.action_mailer.default_url_options = { :host => 'gentle-taiga-96997.herokuapp.com' }
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
