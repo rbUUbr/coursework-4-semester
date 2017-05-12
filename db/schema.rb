@@ -25,14 +25,13 @@ ActiveRecord::Schema.define(version: 20170511233609) do
 
   create_table "lab_queues", id: :serial, force: :cascade do |t|
     t.string "date"
+    t.integer "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "schedule_id"
     t.integer "users_id"
     t.integer "group_id"
     t.integer "users_count", default: 0
     t.index ["group_id"], name: "index_lab_queues_on_group_id"
-    t.index ["schedule_id"], name: "index_lab_queues_on_schedule_id"
     t.index ["users_id"], name: "index_lab_queues_on_users_id"
   end
 

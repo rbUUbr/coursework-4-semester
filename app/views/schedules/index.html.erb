@@ -1,1 +1,18 @@
 <%= link_to('Logout', destroy_user_session_path,  :method=>'delete') %>
+<% @lab_queues.each do |lab_queue| %>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <%= link_to "CREATE", lab_queue_registrate_on_lab_path(lab_queue.id) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<% end %>
