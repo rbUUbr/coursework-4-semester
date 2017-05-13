@@ -1,4 +1,4 @@
-<div id="demo">
+<div id="demo" class="show">
   <div class="table-responsive-vertical shadow-z-1">
     <table class="table table-hover table-mc-light-blue">
       <thead>
@@ -19,22 +19,22 @@
       </thead>
       <tbody>
       <% @lab_queue.selected_queues.each do |lab_queue| %>
-        <tr>
-          <td>
-            <%= lab_queue.user_position %>
-          </td>
-          <td>
-            <%= lab_queue.user.firstname %>
-          </td>
-          <td>
-            <%= lab_queue.user.lastname %>
-          </td>
-          <td>
-            <% if current_user == lab_queue.user  %>
-                <%= button_to 'Cancel', lab_queue_registrate_on_lab_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-danger bt bt-ripple', type: 'button' %>
-            <% end %>
-          </td>
-        </tr>
+        <% if current_user.selected_queues.find_by(lab_queue_id: lab_queue.id) %>
+          <tr>
+            <td>
+              <%= lab_queue.user_position %>
+            </td>
+            <td>
+              <%= lab_queue.user.firstname %>
+            </td>
+            <td>
+              <%= lab_queue.user.lastname %>
+            </td>
+            <td>
+              <%= button_to 'Cancel', lab_queue_registrate_on_lab_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-danger bt bt-ripple', type: 'button' %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>

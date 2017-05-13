@@ -1,9 +1,18 @@
 ready = ->
-  $('input[data-lab_queue_id].btn-primary, .btn-danger').on 'click', (e) ->
+  $('div.index').on 'click', 'input[data-lab_queue_id].btn-primary, .btn-danger', (e) ->
     e.preventDefault()
     registrateOnLab($(e.target))
+    alert(1)
+  $('div.show').on 'click', 'input[data-lab_queue_id].btn-danger', (e) ->
+    e.preventDefault()
+    $.ajax(
+      url: "/lab_queues/#{$(e.target).data('lab_queue_id')}/registrate_on_lab"
+      type: 'GET'
+    ).done (response) ->
+      $(e.target).parents('tr').remove()
 $(document).ready(ready)
 registrateOnLab = (object) ->
+  alert(2)
   $.ajax(
     url: "/lab_queues/#{object.data('lab_queue_id')}/registrate_on_lab"
     type: 'GET'

@@ -9,6 +9,7 @@ class LabQueuesController < ApplicationController
   end
 
   def registrate_on_lab
+    @selected_queue = find_queue_in_selected
     if @selected_queue
       @selected_queue.destroy
     else
