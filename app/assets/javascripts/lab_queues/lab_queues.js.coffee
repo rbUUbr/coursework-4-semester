@@ -1,5 +1,5 @@
 ready = ->
-  $('input[data-lab_queue_id].btn-primary').on 'click', (e) ->
+  $('input[data-lab_queue_id].btn-primary, .btn-danger').on 'click', (e) ->
     e.preventDefault()
     registrateOnLab($(e.target))
 $(document).ready(ready)

@@ -7,7 +7,10 @@
           Position
         </td>
         <td>
-          Username
+          First name
+        </td>
+        <td>
+          Last name
         </td>
         <td>
           Actions
@@ -21,10 +24,13 @@
             <%= lab_queue.user_position %>
           </td>
           <td>
-            <%= lab_queue.user.username %>
+            <%= lab_queue.user.firstname %>
           </td>
           <td>
-            <% if current_user.username == lab_queue.user.username %>
+            <%= lab_queue.user.lastname %>
+          </td>
+          <td>
+            <% if current_user == lab_queue.user  %>
                 <%= button_to 'Cancel', lab_queue_registrate_on_lab_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-danger bt bt-ripple', type: 'button' %>
             <% end %>
           </td>
