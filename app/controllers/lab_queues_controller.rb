@@ -1,9 +1,10 @@
 class LabQueuesController < ApplicationController
   before_action :authenticate_user!
+
   def index
-    @lab_queues = current_user.group.lab_queues
-    @schedules = current_user.group.schedules
+    @lab_queues = current_user.group.lab_queues.nearest_labs
   end
+
   def registrate_on_lab
     find_queue_in_selected
     if @selected_queue
