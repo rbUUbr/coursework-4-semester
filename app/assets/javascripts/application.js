@@ -15,3 +15,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= requre_tree ./lib

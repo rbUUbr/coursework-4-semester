@@ -1,12 +1,14 @@
 class LabQueuesController < ApplicationController
   before_action :authenticate_user!
-
+  load_and_authorize_resource
   def index
     @lab_queues = current_user.group.lab_queues.nearest_labs
   end
 
+  def show
+  end
+
   def registrate_on_lab
-    find_queue_in_selected
     if @selected_queue
       @selected_queue.destroy
     else
