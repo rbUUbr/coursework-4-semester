@@ -12,10 +12,7 @@
 7. Run ``` rails server(or rails s) ```
 
 ### TODO List ###
-1. Make queues for all groups
-2. Make registration on site
-3. Make registration for queues
-4. Enable SideKiq
+1. Enable SideKiq
 
 For information of app go to [wiki](https://github.com/rbUUbr/coursework-4-semester/wiki).  
 For feedback:  
