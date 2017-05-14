@@ -13,7 +13,7 @@ namespace :group_tasks do
   task delete_groups_with_empty_schedules: :environment do
     Schedule.all.each do |schedule|
       puts "Deleting #{schedule.subject} of #{Group.find(schedule.group_id).name}'s cause it hasn't weeks"
-      if schedule.weeks == []
+      if schedule.week == 0
         puts "Deleting #{schedule.subject} of #{Group.find(schedule.group_id).name}'s cause it hasn't weeks"
         schedule.destroy
       end

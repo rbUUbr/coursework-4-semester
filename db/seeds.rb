@@ -1,6 +1,6 @@
 require 'open-uri'
 URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS = 'https://www.bsuir.by/schedule/rest/studentGroup'.freeze
-START_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE = Date.parse('8th Feb 2017')
+START_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE = Date.parse('13th Feb 2017')
 END_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE = Date.parse('31st May 2017')
 def parse_groups
   all_groups_page = Nokogiri::XML(open(URL_OF_PAGE_WITH_ALL_ID_OF_GROUPS))
@@ -10,7 +10,6 @@ def parse_groups
                   name: link.xpath('.//name').text)
   end
 end
-
 
 def parse_groups_schedules
   weeks = []
@@ -31,11 +30,15 @@ def parse_groups_schedules
             subject.xpath('.//weekNumber').each do |week|
               weeks.push(week.text)
             end
-            group.schedules << Schedule.create!(
-              subject: subject.xpath('.//subject').text,
-              weeks: weeks, subgroup: subject.xpath('.//numSubgroup').text,
-               time: subject.xpath('.//lessonTime').text,
-              weeks_day: link.xpath('.//weekDay').text)
+            weeks.each do |week|
+              if week != '0'
+                group.schedules << Schedule.create!(
+                  subject: subject.xpath('.//subject').text,
+                  week: week.to_i, subgroup: subject.xpath('.//numSubgroup').text,
+                   time: subject.xpath('.//lessonTime').text,
+                  weeks_day: link.xpath('.//weekDay').text)
+              end
+            end
             weeks = []
           end
         end
@@ -52,13 +55,15 @@ def parse_groups_schedules
 end
 
 def create_schedules
+  array_with_days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
   current_date = START_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE
   current_week = 1
   while current_date < END_OF_SEMESTER_OF_FIRST_AND_SECOND_COURSE
     Group.find_each do |group|
       group.schedules.find_each do |schedule|
-        if schedule.weeks.include?(current_week)
-          LabQueue.create!(date: current_date, schedule_id: schedule.id, group_id: group.id)
+        if schedule.week == current_week
+          day_of_week_number = array_with_days.index(schedule.weeks_day)
+          LabQueue.create!(date: current_date + day_of_week_number, schedule_id: schedule.id, group_id: group.id)
         end
       end
     end
