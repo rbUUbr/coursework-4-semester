@@ -10,6 +10,7 @@ class LabQueuesController < ApplicationController
 
   def registrate_on_lab
     find_queue_in_selected
+    binding.pry
     if @selected_queue
       @selected_queue.destroy
     else
@@ -24,6 +25,7 @@ class LabQueuesController < ApplicationController
   private
 
   def find_queue_in_selected
+    binding.pry
     @selected_queue = current_user.selected_queues.find_by(lab_queue_id:
                                                                  params[:lab_queue_id])
   end

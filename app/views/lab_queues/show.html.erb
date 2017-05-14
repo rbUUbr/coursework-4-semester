@@ -31,6 +31,7 @@
           </td>
           <td>
             <% if current_user == lab_queue.user%>
+                <% binding.pry %>
               <%= button_to 'Cancel', lab_queue_registrate_on_lab_path(lab_queue.lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-danger bt bt-ripple', type: 'button' %>
             <% end %>
           </td>

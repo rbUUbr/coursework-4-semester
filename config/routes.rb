@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   resources :groups, only: [:index, :show]
   resources :schedules, only: [:create, :index, :show, :update]
-  resources :favorites, only: [:index, :show, :create, :destroy]
+  resources :selected_queues, only: [:index, :show, :create, :destroy]
   resources :lab_queues do
     get 'registrate_on_lab', to: 'lab_queues#registrate_on_lab'
   end

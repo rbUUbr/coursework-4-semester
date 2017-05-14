@@ -5,8 +5,8 @@ ready = ->
   $('div.show').on 'click', 'input[data-lab_queue_id].btn-danger', (e) ->
     e.preventDefault()
     $.ajax(
-      url: "/lab_queues/#{$(e.target).data('lab_queue_id')}/registrate_on_lab"
-      type: 'GET'
+      url: "/selected_queues/#{$(e.target).data('lab_queue_id')}"
+      type: 'DELETE'
     ).done (response) ->
       $(e.target).parents('tr').remove()
 $(document).ready(ready)
