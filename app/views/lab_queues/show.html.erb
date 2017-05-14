@@ -19,22 +19,22 @@
       </thead>
       <tbody>
       <% @lab_queue.selected_queues.each do |lab_queue| %>
-        <% if current_user.selected_queues.find_by(lab_queue_id: lab_queue.id) %>
-          <tr>
-            <td>
-              <%= lab_queue.user_position %>
-            </td>
-            <td>
-              <%= lab_queue.user.firstname %>
-            </td>
-            <td>
-              <%= lab_queue.user.lastname %>
-            </td>
-            <td>
+        <tr>
+          <td>
+            <%= lab_queue.user_position %>
+          </td>
+          <td>
+            <%= lab_queue.user.firstname %>
+          </td>
+          <td>
+            <%= lab_queue.user.lastname %>
+          </td>
+          <td>
+            <% if current_user == lab_queue.user %>
               <%= button_to 'Cancel', lab_queue_registrate_on_lab_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-danger bt bt-ripple', type: 'button' %>
-            </td>
-          </tr>
-        <% end %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
       </tbody>
     </table>

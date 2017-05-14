@@ -2,7 +2,7 @@ class SelectedQueue < ApplicationRecord
   belongs_to :user
   belongs_to :lab_queue, counter_cache: :users_count
 
-  after_destroy :update_states
+  before_destroy :update_states
 
   private
 
@@ -11,8 +11,7 @@ class SelectedQueue < ApplicationRecord
       element.user_position != 1
     end
     queues.each do |queue|
-      queue.user_position -= 1
-      queue.save
+      queue.update_attribute(:user_position, queue.user_position - 1)
     end
   end
 end
