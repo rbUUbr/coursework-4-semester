@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     get 'sign_up', to: 'devise/registrations#new'
     delete 'sign_out', to: 'devise/sessions#destroy'
   end
+  resources :users do
+    post 'configure_profile'
+    get 'configure_profile'
+  end
   resources :groups, only: [:index, :show]
   resources :schedules, only: [:create, :index, :show, :update]
   resources :selected_queues, only: [:index, :show, :create, :destroy]

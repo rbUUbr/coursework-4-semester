@@ -1,0 +1,33 @@
+<div class="container container-for-login">
+  <div class="row">
+    <div class="pen-title">
+      <h1 >Now add some information about you!</h1>
+            </div>
+            <div class="container container-for-login">
+              <div class="card"></div>
+              <div class="card">
+                <h1 class="title">Login</h1>
+                <%= simple_form_for @user do |f| %>
+                    <div class="input-container">
+                      <%= f.text_field :firstname %>
+                      <%= f.label :firstname %>
+                      <div class="bar"></div>
+                    </div>
+                    <div class="input-container">
+                      <%= f.text_field :lastname %>
+                      <%= f.label :lastname %>
+                    </div>
+                    <%= f.simple_fields_for :group do |o|  %>
+                        <div class="input-container">
+                          <%= o.label :group_name, required: true %><br />
+                          <%= o.text_field :group_name, include_blank: false %>
+                        </div>
+                    <% end %>
+                    <div class="button-container">
+                      <button><span>Go</span></button>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+  </div>
+</div>

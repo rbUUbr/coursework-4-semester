@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     user ||= User.new
     can :manage, :all
+    binding.pry
       if user.new_record?
         send :guest
       else
@@ -12,7 +13,7 @@ class Ability
   end
 
   def guest
-    can :read, :all
+
   end
 
   def authorized_user(user)
