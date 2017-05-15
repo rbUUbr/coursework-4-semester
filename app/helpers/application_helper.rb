@@ -1,11 +1,11 @@
 module ApplicationHelper
   def subgroup_text(subgroup)
     if subgroup == 1
-      return '1'
+      '1'
     elsif subgroup == 2
-      return '2'
+      '2'
     else
-      return 'common'
+      'common'
     end
   end
 end
