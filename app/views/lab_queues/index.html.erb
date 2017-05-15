@@ -8,6 +8,9 @@
             Subject
           </td>
           <td>
+            Subgroup
+          </td>
+          <td>
             Date
           </td>
           <td>
@@ -23,6 +26,9 @@
         <tr>
           <td>
             <%= lab_queue.schedule.subject %>
+          </td>
+          <td>
+            <%= subgroup_text(lab_queue.schedule.subgroup) %>
           </td>
           <td>
             <%= lab_queue.date %>
