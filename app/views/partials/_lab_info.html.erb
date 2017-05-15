@@ -9,7 +9,7 @@
       </span>
       <div class="list-group list-group-horizontal">
         <span class="list-group-item"><%= lab_queue.schedule.subject %></span>
-        <span class="list-group-item"><%= lab_queue.schedule.subgroup %></span>
+        <span class="list-group-item"><%= subgroup_text(lab_queue.schedule.subgroup)%></span>
         <span class="list-group-item"><%=  lab_queue.date %></span>
         <span class="list-group-item"><%= lab_queue.schedule.time %></span>
       </div>
