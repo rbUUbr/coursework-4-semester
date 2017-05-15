@@ -1,0 +1,19 @@
+<div class="container" >
+  <div class="row" style="padding-top:50px" id="info">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+      <span class="list-group list-group-horizontal">
+        <span class="list-group-item">Subject</span>
+        <span class="list-group-item">Subgroup</span>
+        <span class="list-group-item">Date</span>
+        <span class="list-group-item">Time</span>
+      </span>
+      <div class="list-group list-group-horizontal">
+        <span class="list-group-item"><%= lab_queue.schedule.subject %></span>
+        <span class="list-group-item"><%= lab_queue.schedule.subgroup %></span>
+        <span class="list-group-item"><%=  lab_queue.date %></span>
+        <span class="list-group-item"><%= lab_queue.schedule.time %></span>
+      </div>
+      <%= button_to 'Back', lab_queues_path, class: 'btn btn-primary bt bt-ripple'%>
+    </div>
+  </div>
+</div>
