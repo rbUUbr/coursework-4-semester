@@ -1,4 +1,4 @@
-<div id="demo" class="index">
+ <div id="demo" class="index">
   <%= link_to 'LOGOUT', destroy_user_session_path, method: :delete %>
   <div class="table-responsive-vertical shadow-z-1">
     <table class="table table-hover table-mc-light-blue">
@@ -44,7 +44,7 @@
               <% else %>
                <%= button_to 'Registrate', lab_queue_registrate_on_lab_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-primary bt bt-ripple', type: 'button' %>
               <% end %>
-              <%= button_to 'Show', lab_queue_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}",  class: 'btn btn-info bt bt-ripple', method: :get, type: 'button'  %>
+              <%= button_to 'Show', lab_queue_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}",  class: 'btn btn-info bt bt-ripple', method: :get, type: 'button',  style: "width: 132.16px;"  %>
             </div>
             </div>
           </td>

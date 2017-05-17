@@ -2,8 +2,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :html, :json
 
   before_action :configure_permitted_parameters, only: [:create, :update], if: :devise_controller?
+
   def create
     super
+    @user.role = 'student'
+    @user.save
   end
   protected
 

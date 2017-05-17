@@ -3,6 +3,17 @@ class LabQueuesController < ApplicationController
   load_and_authorize_resource
   def index
     @lab_queues = current_user.group.lab_queues.nearest_labs
+    @filterrific = initialize_filterrific(
+        LabQueue,
+        params[:filterrific],
+        select_options: {
+            sorted_by: LabQueue.options_for_sorted_by,
+            with_country_id: Country.options_for_select
+        },
+        persistence_id: 'shared_key',
+        default_filter_params: {},
+        available_filters: [],
+    ) or return
   end
 
   def show
