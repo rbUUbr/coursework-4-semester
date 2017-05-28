@@ -1,5 +1,4 @@
 class LabQueuesController < ApplicationController
-  before_action :authenticate_user!
   load_and_authorize_resource
   def index
     @lab_queues = current_user.group.lab_queues.nearest_labs

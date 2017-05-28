@@ -3,27 +3,37 @@ class Ability
 
   def initialize(user)
     user ||= User.new
+    @user = user
     if user.new_record?
       send :guest
     else
-      if user && user.role == "admin"
-        can :access, :rails_admin       # only allow admin users to access Rails Admin
-        can :dashboard                  # allow access to dashboard
-        if user.role == "superadmin"
-          can :manage, :all
-        end
-      end
       can :read, :all
-      can :manage, SelectedQueue, user: { user_id: user.id }
+      if user.role == 'admin'
+        send :admin
+      elsif user.role == "superadmin"
+        send :superadmin
+      else
+        send :student
+      end
     end
   end
 
   def guest
-
+    can :read, LabQueue
+    can :read, Schedule
   end
 
-  def authorized_user(user)
+  def admin
+    can :access, :rails_admin       # only allow admin users to access Rails Admin
+    can :dashboard
+  end
+
+  def superadmin
     can :manage, :all
   end
 
+  def student
+    can :manage, SelectedQueue, user: { id: @user.id }
+    can :manage, LabQueue
+  end
 end
