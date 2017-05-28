@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     post 'configure_profile'
     get 'configure_profile'
   end
+  get '/search/:subject', to: 'lab_queues#search' 
   resources :groups, only: [:index, :show]
   resources :schedules, only: [:create, :index, :show, :update]
   resources :selected_queues, only: [:index, :show, :create, :destroy]

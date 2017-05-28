@@ -1,12 +1,27 @@
 class LabQueuesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: :registrate_on_lab
   load_and_authorize_resource
 
   def index
-    @lab_queues = current_user.group.lab_queues.nearest_labs
+    binding.pry
+    if params[:query].present?
+
+      @lab_queues = LabQueue.search_by_subject(params[:query])
+    else
+      if user_signed_in?
+        @lab_queues = current_user.group.lab_queues.nearest_labs
+      else
+        @lab_queues = LabQueue.all.sample(20)
+      end
+    end
+  end
+  def show
   end
 
-  def show
+
+  def search
+    lab_queues = LabQueue.search_by_subject(params[:subject])
+    render 'index', lab_queues
   end
 
   def registrate_on_lab

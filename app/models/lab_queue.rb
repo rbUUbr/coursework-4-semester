@@ -1,4 +1,5 @@
 class LabQueue < ApplicationRecord
+  include PgSearch
   has_one :group
   belongs_to :schedule
   has_many :selected_queues, dependent: :destroy
@@ -8,4 +9,6 @@ class LabQueue < ApplicationRecord
     where('date >= ?', Date.today)
         .order('created_at DESC').reverse_order
   }
+
+  pg_search_scope :search_by_subject, associated_against: { schedule: [:subject]}
 end
