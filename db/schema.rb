@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528112435) do
+ActiveRecord::Schema.define(version: 20170528164556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(version: 20170528112435) do
   end
 
   create_table "lab_queues", id: :serial, force: :cascade do |t|
-    t.string "date"
     t.integer "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "group_id"
     t.integer "users_count", default: 0
+    t.date "date_of_lab"
     t.index ["group_id"], name: "index_lab_queues_on_group_id"
   end
 

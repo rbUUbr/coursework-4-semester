@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'responders'
 gem 'colorize'
 gem 'cancancan'
+gem 'whenever'
 gem 'pry'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

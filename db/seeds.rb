@@ -63,7 +63,7 @@ def create_schedules
       group.schedules.find_each do |schedule|
         if schedule.week == current_week
           day_of_week_number = array_with_days.index(schedule.weeks_day)
-          LabQueue.create!(date: current_date + day_of_week_number, schedule_id: schedule.id, group_id: group.id)
+          LabQueue.create!(date_of_lab: current_date + day_of_week_number, schedule_id: schedule.id, group_id: group.id)
         end
       end
     end
