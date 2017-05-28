@@ -3,7 +3,6 @@ class LabQueuesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    binding.pry
     if params[:query].present?
 
       @lab_queues = LabQueue.search_by_subject(params[:query])
