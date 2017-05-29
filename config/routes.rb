@@ -14,11 +14,11 @@ Rails.application.routes.draw do
   resources :users do
     post 'configure_profile'
     get 'configure_profile'
+    get 'my_queues', to: 'selected_queues#index'
   end
-  get '/search/:subject', to: 'lab_queues#search' 
+  get '/search/:subject', to: 'lab_queues#search'
   resources :groups, only: [:index, :show]
   resources :schedules, only: [:create, :index, :show, :update]
-  resources :selected_queues, only: [:index, :show, :create, :destroy]
   resources :lab_queues do
     get 'registrate_on_lab', to: 'lab_queues#registrate_on_lab'
   end
