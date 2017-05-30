@@ -55,6 +55,7 @@ group :development, :test do
   # get a debugger console
   gem 'byebug', platform: :mri
   gem 'capybara', '~> 2.5'
+  gem 'rails-controller-testing'
 end
 
 gem 'devise', github: 'plataformatec/devise'

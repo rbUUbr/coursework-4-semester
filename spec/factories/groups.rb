@@ -10,4 +10,3 @@ FactoryGirl.define do
     course { Faker::Number.number(1) }
   end
 end
-
