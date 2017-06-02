@@ -5,14 +5,15 @@ ready = ->
   $(document).on 'click', 'input[data-lab_queue_id].delete-on-show', (e) ->
     e.preventDefault()
     removeLab($(this))
-  $(document).on 'click', 'input[data-lab_queue_id].btn-danger.delete-from-selected', (e) ->
+  $(document).on 'click', 'input[data-lab_queue_id].delete-from-selected', (e) ->
     e.preventDefault()
-    target_url = $(this).parent().attr('action')
+    id = $(this).data('lab_queue_id')
+    self.element = e.target
     $.ajax(
-      url: target_url
+      url: "/lab_queues/#{id}/registrate_on_lab"
       type: 'GET'
     ).done (response) ->
-      $(this).parents('tr').remove()
+      $(self.element).parents('tr').remove()
 $(document).ready(ready)
 
 removeLab = (object) ->

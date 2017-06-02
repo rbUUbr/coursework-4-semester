@@ -44,7 +44,7 @@
           <div class="col-md-6">
           <div class="btn-group" role="group" aria-label="...">
             <% if user_signed_in? && current_user.selected_queues.exists?(lab_queue_id: lab_queue.id) %>
-              <%= button_to 'Cancel', lab_queue_registrate_on_lab_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-danger bt bt-ripple', type: 'button',  style: "width: 132.16px;"  %>
+              <%= button_to 'Cancel', lab_queue_registrate_on_lab_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-danger bt bt-ripple delete-on-show', type: 'button',  style: "width: 132.16px;"  %>
             <% else %>
              <%= button_to 'Registrate', lab_queue_registrate_on_lab_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-primary bt bt-ripple', type: 'button' %>
             <% end %>
