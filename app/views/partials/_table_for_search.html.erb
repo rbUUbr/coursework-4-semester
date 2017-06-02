@@ -48,7 +48,7 @@
             <% else %>
              <%= button_to 'Registrate', lab_queue_registrate_on_lab_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}", method: :get, class: 'btn btn-primary bt bt-ripple', type: 'button' %>
             <% end %>
-            <%= button_to 'Show', lab_queue_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}",  class: 'btn btn-info bt bt-ripple', method: :get, type: 'button',  style: "width: 132.16px;"  %>
+            <%= button_to 'Show', lab_queue_path(lab_queue.id), 'data-lab_queue_id': "#{lab_queue.id}",  class: 'btn btn-info bt bt-ripple show-more', method: :get, type: 'button',  style: "width: 132.16px;"  %>
           </div>
           </div>
         </td>

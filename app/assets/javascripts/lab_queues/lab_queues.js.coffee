@@ -1,28 +1,20 @@
 ready = ->
-  $(document).on 'click', 'input[data-lab_queue_id].btn-primary', (e) ->
+  $(document).on 'click', '.index input[data-lab_queue_id]:not(.show-more)', (e) ->
     e.preventDefault()
     registrateOnLab($(this))
-  $(document).on 'click', 'input[data-lab_queue_id].delete-on-show', (e) ->
-    e.preventDefault()
-    removeLab($(this))
+
   $(document).on 'click', 'input[data-lab_queue_id].delete-from-selected', (e) ->
     e.preventDefault()
-    id = $(this).data('lab_queue_id')
-    self.element = e.target
-    $.ajax(
-      url: "/lab_queues/#{id}/registrate_on_lab"
-      type: 'GET'
-    ).done (response) ->
-      $(self.element).parents('tr').remove()
-$(document).ready(ready)
+    registrateOnLab($(this))
+    $(this).parents('tr').remove()
 
-removeLab = (object) ->
-  target_url = $(object).parent().attr('action')
-  $.ajax(
-    url: target_url
-    type: 'GET'
-  ).done (response) ->
-    $(object).parents('tr').remove()
+  $(document).on 'click', 'input[data-lab_queue_id].btn-danger.delete-on-show', (e) ->
+    alert(1)
+    e.preventDefault()
+    registrateOnLab($(this))
+    $(this).parents('tr').remove()
+
+$(document).ready(ready)
 
 registrateOnLab = (object) ->
   $.ajax(
@@ -40,4 +32,3 @@ registrateOnLab = (object) ->
       object.removeClass('btn-danger')
       object.addClass('btn-primary')
       $('span.badge').text(new_value - 1)
-    return
