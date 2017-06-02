@@ -37,8 +37,8 @@
         <td>
           <div class="col-md-6">
           <div class="btn-group" role="group" aria-label="...">
-            <%= button_to 'Cancel', lab_queue_registrate_on_lab_path(selected_queue.lab_queue.id), 'data-lab_queue_id': "#{selected_queue.lab_queue.id}", method: :get, class: 'btn btn-danger bt bt-ripple', type: 'button',  style: "width: 132.16px;"  %>
-            <%= button_to 'Show', lab_queue_path(selected_queue.lab_queue.id), 'data-lab_queue_id': "#{selected_queue.lab_queue.id}",  class: 'btn btn-info bt bt-ripple', method: :get, type: 'button',  style: "width: 132.16px;"  %>
+            <%= button_to 'Cancel', lab_queue_registrate_on_lab_path(selected_queue.lab_queue_id), 'data-lab_queue_id': "#{selected_queue.lab_queue_id}", method: :get, class: 'btn btn-danger bt bt-ripple delete-from-selected', type: 'button',  style: "width: 132.16px;"  %>
+            <%= button_to 'Show', lab_queue_path(selected_queue.lab_queue_id), 'data-lab_queue_id': "#{selected_queue.lab_queue_id}",  class: 'btn btn-info bt bt-ripple', method: :get, type: 'button',  style: "width: 132.16px;"  %>
           </div>
           </div>
         </td>

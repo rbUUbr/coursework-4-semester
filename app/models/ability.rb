@@ -33,7 +33,7 @@ class Ability
   end
 
   def student
-    can :manage, SelectedQueue, user: { id: @user.id }
+    can :manage, SelectedQueue
     can :manage, LabQueue
   end
 end

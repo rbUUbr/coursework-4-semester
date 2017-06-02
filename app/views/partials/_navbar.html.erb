@@ -15,10 +15,8 @@
       <% else %>
         <%= render 'partials/unsigned_user_uls' %>
       <% end %>
-      <form class="navbar-form navbar-right search-form" role="search">
-        <input type="text" name="query" id="query" class="form-control" placeholder="I want to find…">
-
-      </form>
+      <%= form_tag root_path, method: 'get', class: 'navbar-form navbar-right search-form' %>
+      <%= text_field_tag :query, params[:query], class: 'form-control', id: 'query' %>
     </div>
   </div>
 </nav>

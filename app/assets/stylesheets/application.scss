@@ -18,3 +18,11 @@
 @import "material_buttons";
 @import "material_navbar";
 @import "material_login_and_signup_form";
+td {
+  width: 15%;
+  text-align:center;
+}
+td div{
+  display: block;
+  margin: auto;
+}
