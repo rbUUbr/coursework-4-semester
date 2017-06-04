@@ -7,7 +7,7 @@ class LabQueuesController < ApplicationController
       @lab_queues = LabQueue.search_by_subject(params[:query])
     else
       if user_signed_in? && current_user.group.present?
-        @lab_queues = current_user.group.lab_queues.nearest_labs
+        @lab_queues = current_user.group.lab_queues
       else
         @lab_queues = LabQueue.all.sample(20)
       end
@@ -17,9 +17,5 @@ class LabQueuesController < ApplicationController
   def show
   end
 
-  def search
-    lab_queues = LabQueue.search_by_subject(params[:subject])
-    render 'index', lab_queues
-  end
 
 end

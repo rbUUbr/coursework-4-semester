@@ -15,7 +15,7 @@
       <% else %>
         <%= render 'partials/unsigned_user_uls' %>
       <% end %>
-      <%= form_tag root_path, method: 'get', class: 'navbar-form navbar-right search-form' %>
+      <%= form_tag root_path, method: 'get', class: 'navbar-form navbar-right search-form' do |f| %>
         <%= text_field_tag :query, params[:query], class: 'form-control', id: 'query' %>
       <% end %>
     </div>

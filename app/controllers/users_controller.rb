@@ -16,9 +16,7 @@ class UsersController < ApplicationController
 
   end
 
-  def show
-  end
-    
+
   def configure_profile
     @user = current_user
   end
