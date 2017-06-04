@@ -11,14 +11,14 @@ class UsersController < ApplicationController
         redirect_to root_path
       end
     else
-      redirect_to user_configure_profile_path(@user.id)
+      render :edit
+      flash[:notice] = 'trouble'
     end
-
   end
 
-
-  def configure_profile
+  def show
     @user = current_user
+    render :edit
   end
 
   private

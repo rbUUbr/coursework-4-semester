@@ -4,8 +4,10 @@ class Users::SessionsController < Devise::SessionsController
   protected
 
   def after_sign_in_path_for(resource)
-    if !current_user.group.present?
-      user_configure_profile_path(current_user.id)
+    if !resource.group_id.present?
+      edit_user_path(current_user.id)
+    else
+      root_path
     end
   end
 end
